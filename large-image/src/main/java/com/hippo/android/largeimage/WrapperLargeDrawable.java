@@ -266,6 +266,7 @@ public class WrapperLargeDrawable extends LargeDrawable implements Drawable.Call
 
     float oldScale = scale;
     scale = Utils.clamp(scale * factor, minScale, maxScale);
+    factor = scale / oldScale;
     if (scale == oldScale) {
       return;
     }
