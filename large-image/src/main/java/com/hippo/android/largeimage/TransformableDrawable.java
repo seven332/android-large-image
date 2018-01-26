@@ -84,14 +84,6 @@ public class TransformableDrawable extends WrapperDrawable {
   private float maxScale;
   private float[] scaleLevels;
 
-  public TransformableDrawable() {
-    super();
-  }
-
-  public TransformableDrawable(Drawable drawable) {
-    super(drawable);
-  }
-
   @Override
   public void onSetWrappedDrawable(@Nullable Drawable oldDrawable, @Nullable Drawable newDrawable) {
     if (newDrawable != null) {

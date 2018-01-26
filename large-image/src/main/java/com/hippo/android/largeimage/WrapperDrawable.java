@@ -36,14 +36,6 @@ class WrapperDrawable extends Drawable implements Drawable.Callback {
   @Nullable
   private Drawable drawable;
 
-  public WrapperDrawable() {
-    this(null);
-  }
-
-  public WrapperDrawable(Drawable drawable) {
-    setDrawable(drawable);
-  }
-
   public final void setDrawable(@Nullable Drawable drawable) {
     if (this.drawable == drawable) {
       return;
