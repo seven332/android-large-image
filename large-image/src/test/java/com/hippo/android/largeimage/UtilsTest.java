@@ -14,24 +14,22 @@
  * limitations under the License.
  */
 
-package com.hippo.android.largeimage.demo;
+package com.hippo.android.largeimage;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.ImageView;
-import com.hippo.android.largeimage.LargeImage;
+/*
+ * Created by Hippo on 2018/1/24.
+ */
 
-public class MainActivity extends AppCompatActivity {
+import static org.junit.Assert.assertEquals;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+import org.junit.Test;
 
-    LargeImage.initialize(this);
+public class UtilsTest {
 
-    GestureImageView image = findViewById(R.id.large_image);
-    image.setScaleType(ImageView.ScaleType.FIT_XY);
-    image.load(R.drawable.qingming_shanghe_tu);
+  @Test
+  public void testCeilDiv() {
+    assertEquals(1, Utils.ceilDiv(5, 6));
+    assertEquals(1, Utils.ceilDiv(6, 6));
+    assertEquals(2, Utils.ceilDiv(7, 6));
   }
 }

@@ -39,6 +39,6 @@ android {
 dependencies {
     implementation project(":large-image")
     implementation "com.android.support:appcompat-v7:$support_library_version"
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.github.seven332:android-gesture:e8614eefaf'
     testImplementation 'junit:junit:4.12'
 }

@@ -14,24 +14,28 @@
  * limitations under the License.
  */
 
-package com.hippo.android.largeimage.demo;
+package com.hippo.android.largeimage;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.ImageView;
-import com.hippo.android.largeimage.LargeImage;
+/*
+ * Created by Hippo on 2018/1/25.
+ */
 
-public class MainActivity extends AppCompatActivity {
+import android.content.Context;
+import android.util.DisplayMetrics;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+public final class LargeImage {
 
-    LargeImage.initialize(this);
+  private static int MAX_TEXTURE_SIZE = 1024;
 
-    GestureImageView image = findViewById(R.id.large_image);
-    image.setScaleType(ImageView.ScaleType.FIT_XY);
-    image.load(R.drawable.qingming_shanghe_tu);
+  /**
+   * Initialize the whole {@code android-large-image} library.
+   */
+  public static void initialize(Context context) {
+    DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+    MAX_TEXTURE_SIZE = Math.max(metrics.widthPixels, metrics.heightPixels);
+  }
+
+  static int getMaxTextureSize() {
+    return MAX_TEXTURE_SIZE;
   }
 }
