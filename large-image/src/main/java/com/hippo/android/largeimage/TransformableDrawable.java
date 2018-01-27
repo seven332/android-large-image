@@ -298,23 +298,29 @@ public class TransformableDrawable extends WrapperDrawable {
   }
 
   public void setScale(float scale) {
-    this.scale = scale;
-    scaleType = SCALE_TYPE_FIXED;
-    drawRectFDirty = true;
-    resetLayout();
-    invalidateSelf();
+    if (scaleType != SCALE_TYPE_FIXED || this.scale != scale) {
+      this.scale = scale;
+      scaleType = SCALE_TYPE_FIXED;
+      drawRectFDirty = true;
+      resetLayout();
+      invalidateSelf();
+    }
   }
 
   public void setScaleType(int scaleType) {
-    this.scaleType = scaleType;
-    resetLayout();
-    invalidateSelf();
+    if (this.scaleType != scaleType) {
+      this.scaleType = scaleType;
+      resetLayout();
+      invalidateSelf();
+    }
   }
 
   public void setStartPosition(int startPosition) {
-    this.startPosition = startPosition;
-    resetLayout();
-    invalidateSelf();
+    if (this.startPosition != startPosition) {
+      this.startPosition = startPosition;
+      resetLayout();
+      invalidateSelf();
+    }
   }
 
   public void scroll(float dx, float dy) {

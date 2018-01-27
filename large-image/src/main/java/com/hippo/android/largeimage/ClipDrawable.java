@@ -54,11 +54,14 @@ public class ClipDrawable extends WrapperDrawable {
    * If the region is out of drawable size, clamp the region.
    */
   public void clipRect(int left, int top, int right, int bottom) {
-    clipMode = CLIP_RECT;
-    clipRect.set(left, top, right, bottom);
-    updateClip();
-    updateBounds();
-    invalidateSelf();
+    if (clipMode != CLIP_RECT || clipRect.left != left || clipRect.top != top ||
+        clipRect.right != right || clipRect.bottom != bottom) {
+      clipMode = CLIP_RECT;
+      clipRect.set(left, top, right, bottom);
+      updateClip();
+      updateBounds();
+      invalidateSelf();
+    }
   }
 
   /**
@@ -76,21 +79,26 @@ public class ClipDrawable extends WrapperDrawable {
    * If the region is out of drawable size, clamp the region.
    */
   public void clipPercent(float left, float top, float right, float bottom) {
-    clipMode = CLIP_PERCENT;
-    clipPercent.set(left, top, right, bottom);
-    updateClip();
-    updateBounds();
-    invalidateSelf();
+    if (clipMode != CLIP_PERCENT || clipPercent.left != left || clipPercent.top != top ||
+        clipPercent.right != right || clipPercent.bottom != bottom) {
+      clipMode = CLIP_PERCENT;
+      clipPercent.set(left, top, right, bottom);
+      updateClip();
+      updateBounds();
+      invalidateSelf();
+    }
   }
 
   /**
    * Clear the clip region.
    */
   public void clearClip() {
-    clipMode = CLIP_NONE;
-    updateClip();
-    updateBounds();
-    invalidateSelf();
+    if (clipMode != CLIP_NONE) {
+      clipMode = CLIP_NONE;
+      updateClip();
+      updateBounds();
+      invalidateSelf();
+    }
   }
 
   private void updateClip() {
