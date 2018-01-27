@@ -67,7 +67,7 @@ public class TransformableDrawable extends WrapperDrawable {
   @StartPosition
   private int startPosition = START_POSITION_TOP_LEFT;
 
-  private Rect visibleRect = new Rect();
+  private Rect visibleRect = new Rect(-Integer.MAX_VALUE, -Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE);
 
   private RectF srcRectF = new RectF();
   private RectF dstRectF = new RectF();
@@ -102,6 +102,11 @@ public class TransformableDrawable extends WrapperDrawable {
   /**
    * Set visible rect for this drawable.
    * The coordinate axis is the same as {@link #setBounds(Rect)}.
+   *
+   * It's makes {@link PreciseDrawable} effective.
+   *
+   * Calls {@code setVisibleRect(-Integer.MAX_VALUE, -Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE)}
+   * to make all region visible.
    */
   public final void setVisibleRect(int left, int top, int right, int bottom) {
     visibleRect.set(left, top, right, bottom);

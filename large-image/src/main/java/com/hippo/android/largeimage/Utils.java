@@ -20,6 +20,8 @@ package com.hippo.android.largeimage;
  * Created by Hippo on 2018/1/9.
  */
 
+import android.graphics.RectF;
+
 class Utils {
 
   /**
@@ -107,5 +109,29 @@ class Utils {
    */
   public static int ceilDiv(int a, int b) {
     return -floorDiv(-a, b);
+  }
+
+  /**
+   *                                            dst
+   *        src                          +---------------+
+   *    +----------+                     |               |
+   *    |   s      |                     |    d          |
+   *    | +--+     |    linear map       | +----+        |
+   *    | +--+     |    ---------->      | |    |        |
+   *    |          |                     | +----+        |
+   *    +----------+                     |               |
+   *                                     +---------------+
+   */
+  public static void mapRect(RectF src, RectF dst, RectF s, RectF d) {
+    final float sX = src.left;
+    final float sY = src.top;
+    final float dX = dst.left;
+    final float dY = dst.top;
+    final float scaleX = dst.width() / src.width();
+    final float scaleY = dst.height() / src.height();
+    d.set(dX + (s.left - sX) * scaleX,
+        dY + (s.top - sY) * scaleY,
+        dX + (s.right - sX) * scaleX,
+        dY + (s.bottom - sY) * scaleY);
   }
 }

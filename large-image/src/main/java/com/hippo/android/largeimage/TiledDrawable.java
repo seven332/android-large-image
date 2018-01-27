@@ -193,24 +193,11 @@ public class TiledDrawable extends Drawable implements PreciseDrawable {
     return Utils.prevPow2(sample);
   }
 
-  private static void mapRect(RectF src, RectF dst, RectF s, RectF d) {
-    final float sX = src.left;
-    final float sY = src.top;
-    final float dX = dst.left;
-    final float dY = dst.top;
-    final float scaleX = dst.width() / src.width();
-    final float scaleY = dst.height() / src.height();
-    d.set(dX + (s.left - sX) * scaleX,
-        dY + (s.top - sY) * scaleY,
-        dX + (s.right - sX) * scaleX,
-        dY + (s.bottom - sY) * scaleY);
-  }
-
   private void drawPreview(Canvas canvas, RectF src, RectF dst) {
     RectF pSrc = rectF1;
     RectF pDst = rectF2;
     pSrc.set(0, 0, width, height);
-    mapRect(src, dst, pSrc, pDst);
+    Utils.mapRect(src, dst, pSrc, pDst);
     pSrc.set(0, 0, preview.getWidth(), preview.getHeight());
     matrix.setRectToRect(pSrc, pDst, Matrix.ScaleToFit.FILL);
     canvas.drawBitmap(preview, matrix, null);
@@ -254,7 +241,7 @@ public class TiledDrawable extends Drawable implements PreciseDrawable {
       }
 
       tSrc.set(tile.rect);
-      mapRect(src, dst, tSrc, tDst);
+      Utils.mapRect(src, dst, tSrc, tDst);
       tSrc.set(0, 0, bitmap.getWidth(), bitmap.getHeight());
       matrix.setRectToRect(tSrc, tDst, Matrix.ScaleToFit.FILL);
       canvas.drawBitmap(bitmap, matrix, null);
